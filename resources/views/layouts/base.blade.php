@@ -16,17 +16,7 @@
 </head>
 <body>
 <div class="font-sans antialiased h-screen flex">
-    <!-- Sidebar / channel list -->
-    <div class="bg-indigo-900 text-purple-200 flex-none w-24 p-6 hidden md:block">
-        @foreach(auth()->user()->groups as $group)
-            <div class="cursor-pointer mb-4">
-                <a href="{{ route('groups.show', $group) }}" class="bg-indigo-200 opacity-25 h-12 w-12 flex items-center justify-center text-black text-2xl font-semibold rounded-lg mb-1 overflow-hidden">
-                    {{ $group->letter }}
-                </a>
-            </div>
-        @endforeach
-        @include('groups._new_modal')
-    </div>
+    @include('groups._list')
 
     @yield('body')
 </div>
