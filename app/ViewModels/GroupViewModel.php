@@ -19,12 +19,17 @@ class GroupViewModel extends ViewModel
 
     public function messages()
     {
-        $channel = $this->channel;
+        return $this->channel
+            ->load('messages.user:name,id')
+            ->messages;
+    }
 
-        if (!$channel->exists) {
-            $channel = $this->group->channels->first();
+    public function channel()
+    {
+        if (!$this->channel->exists) {
+            return $this->group->channels->first();
         }
 
-        return optional($channel)->messages;
+        return $this->channel;
     }
 }

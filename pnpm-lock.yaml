@@ -4,7 +4,9 @@ devDependencies:
   axios: 0.19.2
   cross-env: 6.0.3
   dotenv: 8.2.0
+  laravel-echo: 1.8.1
   laravel-mix: 5.0.4_vue-template-compiler@2.6.11
+  pusher-js: 7.0.0
   tailwindcss: 1.6.2
   vue: 2.6.11
   vue-template-compiler: 2.6.11
@@ -4252,6 +4254,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
+  /laravel-echo/1.8.1:
+    dev: true
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-7IqPhPsIMesVCKBkjMlS2sD47STHykso95hhMYlN4sz0xLj80gt+L2VqrXkAuAivjQWP8yHH89EOtCGipawrhg==
   /laravel-mix/5.0.4_vue-template-compiler@2.6.11:
     dependencies:
       '@babel/core': 7.11.1
@@ -5794,6 +5802,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-BE5CROfVGsx2XIhxGuZAT7rTH9lLeQx/6M0P7DTXQH4IUc3BBzs9JUzt4yzGf3JrH9enkeq6YJBe9CTtkm1WmQ==
+  /pusher-js/7.0.0:
+    dependencies:
+      tweetnacl: 1.0.3
+    dev: true
+    resolution:
+      integrity: sha512-2ZSw8msMe6EKNTebQSthRInrWUK9bo3zXPmQx0bfeDFJdSnTWUROhdAhmpRQREHzqrL+l4imv/3uwgIQHUO0oQ==
   /q/1.5.1:
     dev: true
     engines:
@@ -6836,6 +6850,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
+  /tweetnacl/1.0.3:
+    dev: true
+    resolution:
+      integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==
   /type-is/1.6.18:
     dependencies:
       media-typer: 0.3.0
@@ -7421,7 +7439,9 @@ specifiers:
   axios: ^0.19
   cross-env: ^6.0
   dotenv: ^8.2.0
+  laravel-echo: ^1.8.1
   laravel-mix: ^5.0
+  pusher-js: ^7.0.0
   tailwindcss: ^1.4
   vue: ^2.6
   vue-template-compiler: ^2.6.11

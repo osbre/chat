@@ -28,3 +28,4 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('groups.channels', 'ChannelController')->only('store');
 });
+

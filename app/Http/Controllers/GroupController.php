@@ -20,6 +20,7 @@ class GroupController extends Controller
         ]);
 
         $group = auth()->user()->groups()->create($request->all());
+        $group->channels()->create(['title' => 'general']);
 
         return redirect()->route('groups.show', $group);
     }

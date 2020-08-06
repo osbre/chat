@@ -28,16 +28,14 @@
             </div>
         </nav>
 
-        <section x-data="{}"
-                 x-subscribe
-                 class="px-6 py-4 flex-1 overflow-y-scroll">
+        <section x-data="{}" x-subscribe class="px-6 py-4 flex-1 overflow-y-scroll">
             <template x-for="message in $store.application.messages"
                       :key="message">
                 <div class="flex items-start mb-4 text-sm">
                     <img src="https://pbs.twimg.com/profile_images/875010472105222144/Pkt9zqPY_400x400.jpg" class="w-10 h-10 rounded mr-3">
                     <div class="flex-1 overflow-hidden">
                         <div>
-                            <span class="font-bold">Steve Schoger</span>
+                            <span class="font-bold" x-text="message.user.name"></span>
                             <span class="text-gray-500 text-xs">11:46</span>
                         </div>
                         <p class="text-black leading-normal" x-text="message.body"></p>
@@ -75,11 +73,15 @@
                 send() {
                     axios.post('{{ route('channels.messages.store', $channel) }}', {
                         body: this.message
-                    }).then(function (response) {
-                        $store.application.messages.push(response.json());
                     });
                 },
             }
         }
+
+        Echo.private('App.Channel.{{ $channel->id }}')
+            .listen('NewMessage', (e) => {
+                $store.application.messages.push(e.message);
+                console.log(e)
+            });
     </script>
 @endpush

@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\StoreMessageAction;
 use App\Channel;
-use App\Message;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    public function store(Channel $channel, Request $request)
+    public function store(Channel $channel, Request $request, StoreMessageAction $storeMessage)
     {
         $request->validate(['body' => 'string|required']);
 
-        $message = new Message($request->all());
-        $message->user()->associate(auth()->user());
-        $message->channel()->associate($channel);
-        $message->save();
+        $message = $storeMessage->handle(auth()->user(), $channel, $request->all());
 
         // TODO: use json-resources
         return response()->json($message->withoutRelations()->toArray());
