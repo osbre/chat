@@ -13,6 +13,11 @@ class Group extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function channels()
+    {
+        return $this->hasMany(Channel::class);
+    }
+
     public function getLetterAttribute(): string
     {
         return $this->title[0] ?? '';

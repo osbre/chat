@@ -1,9 +1,8 @@
 @extends('layouts.base')
 
 @section('title', __('Sign up'))
-@section('show-header', false)
 
-@section('content-full')
+@section('body')
     <div class="h-full flex bg-gray-100">
         <div class="p-6 space-y-6 m-auto max-w-xs w-full">
             <div class="flex items-center justify-center">

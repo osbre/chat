@@ -13,12 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('groups', 'GroupController')->only('store', 'show');
+Route::middleware('auth')->group(function () {
+    Route::resource('groups', 'GroupController')->only('store', 'show');
+
+    Route::resource('channels.messages', 'MessageController')->only('store');
+
+    Route::get('groups/{group}/channels/{channel}', 'GroupController@show')->name('groups.channels.show');
+
+    Route::resource('groups.channels', 'ChannelController')->only('store');
+});

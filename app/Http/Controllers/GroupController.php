@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Group;
+use App\{Channel, Group};
+use App\ViewModels\GroupViewModel;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Group::class);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -18,10 +24,10 @@ class GroupController extends Controller
         return redirect()->route('groups.show', $group);
     }
 
-    public function show(Group $group)
+    public function show(Group $group, Channel $channel)
     {
-        return view('groups.show', [
-            'group' => $group,
-        ]);
+        $viewModel = new GroupViewModel($group, $channel);
+
+        return $viewModel->view('groups.show');
     }
 }

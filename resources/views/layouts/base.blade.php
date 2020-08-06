@@ -9,16 +9,21 @@
     <title>@hasSection('title') @yield('title') &dash; {{ config('app.name') }} @else {{ config('app.name') }} @endif</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,500,600">
+
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/gh/ryangjchandler/spruce@0.x.x/dist/spruce.umd.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js" defer></script>
 </head>
 <body>
-<div class="font-sans antialiased h-screen flex">
-    @include('groups._list')
 
+<div class="font-sans antialiased h-screen flex">
     @yield('body')
+
+    {{--TODO: move all scripts to app.js and compile it--}}
+    <script src="https://cdn.jsdelivr.net/gh/ryangjchandler/spruce@0.x.x/dist/spruce.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    @stack('scripts')
 </div>
 
 </body>

@@ -1,5 +1,5 @@
 <div x-data="{open: false}">
-    <div @click="open = true">
+    <div @click="open = true" class="cursor-pointer">
         {{ $slot }}
     </div>
     <div x-show="open"
