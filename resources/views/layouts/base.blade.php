@@ -10,25 +10,26 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,500,600">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <script src="{{ mix('js/app.js') }}" defer></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/ryangjchandler/spruce@0.x.x/dist/spruce.umd.js" defer></script>
 </head>
-<body class="h-full font-sans font-normal text-base tracking-normal leading-normal bg-white text-gray-700">
-    <div id="app" class="h-full" v-cloak>
-        @hasSection('show-header')
-            @include('layouts/partials/_header')
-        @endif
-
-        @hasSection('content-full')
-            @yield('content-full')
-        @endif
-
-        @hasSection('content')
-            <div class="p-6">
-                <div class="max-w-2xl mx-auto">
-                    @yield('content')
-                </div>
+<body>
+<div class="font-sans antialiased h-screen flex">
+    <!-- Sidebar / channel list -->
+    <div class="bg-indigo-900 text-purple-200 flex-none w-24 p-6 hidden md:block">
+        @foreach(auth()->user()->groups as $group)
+            <div class="cursor-pointer mb-4">
+                <a href="{{ route('groups.show', $group) }}" class="bg-indigo-200 opacity-25 h-12 w-12 flex items-center justify-center text-black text-2xl font-semibold rounded-lg mb-1 overflow-hidden">
+                    {{ $group->letter }}
+                </a>
             </div>
-        @endif
+        @endforeach
+        @include('groups._new_modal')
     </div>
+
+    @yield('body')
+</div>
+
 </body>
 </html>
